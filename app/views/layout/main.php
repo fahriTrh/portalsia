@@ -1,3 +1,10 @@
+<?php
+    $uri = $_SERVER['REQUEST_URI'];
+
+    $active_url = explode('/', $uri);
+    $active_url = end($active_url);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +22,7 @@
 <body>
     <script src="/flight-portalsia/public/assets/static/js/initTheme.js"></script>
     <div id="app">
-    <div id="sidebar">
+        <div id="sidebar">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
@@ -61,14 +68,14 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item <?php if($active_url == 'dashboard-admin') :?> active <?php endif ;?>">
                             <a href="/flight-portalsia/dashboard-admin" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item <?php if($active_url == 'manage-dosen') :?> active <?php endif ;?>">
                             <a href="/flight-portalsia/dashboard-admin/manage-dosen" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Manajemen Dosen</span>

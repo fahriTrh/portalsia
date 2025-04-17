@@ -1,17 +1,28 @@
 <?php namespace App\Models;
 
-      use PDO;
+use App\Models\Database;
 
-class Admin extends \flight\ActiveRecord
+class Admin extends Database
 {
-    public function __construct()
+    public function getAllAdmins()
     {
-        $host = $_ENV['DB_HOST'];
-        $dbName = $_ENV['DB_NAME'];
-        $dbUsername = $_ENV['DB_USERNAME'];
+        $this->query("SELECT * FROM admins");
+        return $this->resultSet();
+    }
 
-        $databaseConnection = new PDO("mysql:host=$host;dbname=$dbName", "$dbUsername", '');
+    public function getAdminById($id)
+    {
+        $this->query("SELECT * FROM admins WHERE id = :id");
+        $this->bind(':id', $id);
 
-        parent::__construct($databaseConnection, 'admins');
+        return $this->single();
+    }
+
+    public function getAdminByUsername($username)
+    {
+        $this->query("SELECT * FROM admins WHERE username = :username");
+        $this->bind(':username', $username);
+
+        return $this->single();
     }
 }

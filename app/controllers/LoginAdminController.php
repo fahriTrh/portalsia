@@ -1,22 +1,41 @@
-<?php namespace App\Controllers;
+<?php
+namespace App\Controllers;
+use App\Models\Admin;
 use Flight;
 
 class LoginAdminController
 {
     public function index()
     {
-        ob_start();
         Flight::render('auth/login-admin');
-        $viewContent = ob_get_clean();
-
-        Flight::render('layout/main', ['content' => $viewContent]);
     }
 
     public function login()
     {
-        $data = Flight::request()->query;
-        $nama = $data['nama'];
+        $data = Flight::request()->data;
+        $username = $data['username'];
+        $password = $data['password'];
 
-        Flight::json($data);
+        $admin = new Admin();
+        $admin = $admin->getAdminByUsername($username);
+
+        if ($admin) {
+
+            $hashPasswordFromDb = $admin['password'];
+
+            if (password_verify($password, $hashPasswordFromDb)) {
+                session_start();
+                $_SESSION['admin_id'] = $admin['id'];
+                $_SESSION['admin_username'] = $admin['username'];
+
+                return Flight::redirect('/dashboard-admin');
+            } else {
+                return Flight::redirect('/login-admin');
+            }
+
+        }
+
+        return Flight::redirect('/login-admin');
+
     }
 }
