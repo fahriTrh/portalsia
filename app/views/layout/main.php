@@ -82,18 +82,25 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
-                                <span>Components</span>
+                        <li class="sidebar-item <?php if($active_url == 'manage-mahasiswa') :?> active <?php endif ;?>">
+                            <a href="/flight-portalsia/dashboard-admin/manage-mahasiswa" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Manajemen Mahasiswa</span>
                             </a>
+                        </li>
 
-                            <ul class="submenu ">
+                        <li class="sidebar-item <?php if($active_url == 'manage-jurusan') :?> active <?php endif ;?>">
+                            <a href="/flight-portalsia/dashboard-admin/manage-jurusan" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Manajemen Jurusan</span>
+                            </a>
+                        </li>
 
-                                <li class="submenu-item  ">
-                                    <a href="component-accordion.html" class="submenu-link">Accordion</a>
-                                </li>
-                            </ul>
+                        <li class="sidebar-item <?php if($active_url == 'manage-matakuliah') :?> active <?php endif ;?>">
+                            <a href="/flight-portalsia/dashboard-admin/manage-matakuliah" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Manajemen Matakuliah</span>
+                            </a>
                         </li>
                     </ul>
                 </div>

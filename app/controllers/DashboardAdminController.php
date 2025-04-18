@@ -21,10 +21,10 @@ class DashboardAdminController
     public function manage_dosen()
     {
         $dosen = new Dosen();
-        $dosens = $dosen->getAllDosens();
+        $dosen = $dosen->getAllDosen();
 
         ob_start();
-        Flight::render('dashboard/admin/manage-dosen', ['dosens' => $dosens]);
+        Flight::render('dashboard/admin/manage-dosen', ['dosen' => $dosen]);
         $viewContent = ob_get_clean();
 
         Flight::render('layout/main', [

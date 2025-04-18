@@ -6,15 +6,15 @@ use PDOException;
 
 class Dosen extends Database
 {
-    public function getAllDosens()
+    public function getAllDosen()
     {
-        $this->query("SELECT * FROM dosens");
+        $this->query("SELECT * FROM dosen");
         return $this->resultSet();
     }
 
     public function getDosenById($id)
     {
-        $this->query("SELECT * FROM dosens WHERE id = :id");
+        $this->query("SELECT * FROM dosen WHERE id = :id");
         $this->bind(':id', $id);
 
         return $this->single();
@@ -24,7 +24,7 @@ class Dosen extends Database
     {
         try {
             $password = password_hash($nidn, PASSWORD_DEFAULT);
-            $this->query("INSERT INTO dosens (nama, nidn, password) VALUES (:nama, :nidn, :password)");
+            $this->query("INSERT INTO dosen (nama, nidn, password) VALUES (:nama, :nidn, :password)");
             $this->bind(':nama', $nama);
             $this->bind(':nidn', $nidn);
             $this->bind(':password', $password);
@@ -46,10 +46,10 @@ class Dosen extends Database
 
                 $hashPassword = password_hash($password, PASSWORD_DEFAULT);
 
-                $this->query("UPDATE dosens SET nama = :nama, nidn = :nidn, password = :password WHERE id = :id");
+                $this->query("UPDATE dosen SET nama = :nama, nidn = :nidn, password = :password WHERE id = :id");
                 $this->bind(':password', $hashPassword);
             } else {
-                $this->query("UPDATE dosens SET nama = :nama, nidn = :nidn WHERE id = :id");
+                $this->query("UPDATE dosen SET nama = :nama, nidn = :nidn WHERE id = :id");
             }
             
             $this->bind(':id', $id);
@@ -68,7 +68,7 @@ class Dosen extends Database
     public function delete_dosen($id)
     {
         try {
-            $this->query("DELETE FROM dosens WHERE id = :id");
+            $this->query("DELETE FROM dosen WHERE id = :id");
             $this->bind(':id', $id);
             $this->execute();
 
